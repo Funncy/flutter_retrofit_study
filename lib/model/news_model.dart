@@ -1,23 +1,17 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'news_model.freezed.dart';
 part 'news_model.g.dart';
 
-@JsonSerializable()
-class NewsModel {
-  final int id;
-  final String title;
-  final String type;
-  final String url;
-
-  NewsModel({
-    required this.id,
-    required this.title,
-    required this.type,
-    required this.url,
-  });
+@freezed
+class NewsModel with _$NewsModel {
+  const factory NewsModel({
+    required int id,
+    required String title,
+    required String type,
+    required String url,
+  }) = _NewsModel;
 
   factory NewsModel.fromJson(Map<String, dynamic> json) =>
       _$NewsModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$NewsModelToJson(this);
 }
